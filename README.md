@@ -26,3 +26,4 @@ Error while running /home/pavel/projects/react-rails-redux-sample/node_modules/.
 ```
 
 You can find answer here: http://stackoverflow.com/questions/20886217/browserify-error-usr-bin-env-node-no-such-file-or-directory
+# react-redux-json1
