@@ -1,11 +1,11 @@
 import React, { Component, PropTypes } from 'react';
 
-class Inbox extends Component {
+class InboxApp extends Component {
   render() {
     //const { increment, incrementIfOdd, incrementAsync, decrement, counter } = this.props;
     return (
       <p>
-			Inbox
+			Inbox App
       </p>
     );
   }
@@ -21,4 +21,4 @@ Counter.propTypes = {
 };
 */
 
-export default Inbox;
+export default InboxApp;
