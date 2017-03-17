@@ -1,4 +1,4 @@
-import { INITIALIZE_API, LOAD_JSON, REMOVE_JSON, REMOVE_JSON, RESET_JSON, API_UPDATE_ALL, API_DELETE_ALL } from '../actions/api';
+import { INITIALIZE_API, LOAD_JSON, RELOAD_JSON, REMOVE_JSON, RESET_JSON, API_UPDATE_ALL, API_DELETE_ALL } from '../actions/api';
 
 function load_item(state , item){
   index = _.findIndex(state, s => s.id == item.id)
@@ -31,20 +31,20 @@ function load_data(state, data){
 
   if ( _.isArray( data ) ){
     _.forEach( data, data_item => {
-      new_state = api_reducers.load_data( new_state, data_item )
+      new_state = load_data( new_state, data_item )
     });
 
     return new_state;
   }
 
-  model =  api_reducers.load_attributes( state[data.type], data.id , data.attributes )
+  model =  load_attributes( state[data.type], data.id , data.attributes )
   new_state[data.type] = model
   return new_state;
 }
 
 function remove_data(state, data){
   new_state = _.extend({}, state)
-  model =  api_reducers.remove_attributes( state[data.type], data.id)
+  model =  remove_attributes( state[data.type], data.id)
   new_state[data.type] = model
   return new_state;
 }
@@ -57,7 +57,7 @@ function load_included(state, included){
     if (typeof new_state[item.type] === "undefined") {
       new_state[item.type] = []
     }
-    new_state[item.type] = api_reducers.load_attributes(new_state[item.type], item.id, item.attributes); 
+    new_state[item.type] = load_attributes(new_state[item.type], item.id, item.attributes); 
   })
     
   return new_state;
@@ -101,8 +101,8 @@ export default function api(state = {}, action){
       return new_state;
     case LOAD_JSON:
       if (!action.result) return state;
-      with_included = api_reducers.load_included( state, action.result.included )
-      with_data = api_reducers.load_data(with_included, action.result.data)
+      with_included = load_included( state, action.result.included )
+      with_data = load_data(with_included, action.result.data)
       return with_data
     case RELOAD_JSON:
       new_state= _.extend(state,{})
@@ -110,13 +110,13 @@ export default function api(state = {}, action){
       return new_state
     case REMOVE_JSON:
       if (!action.result) return state;
-      removed =  api_reducers.remove_data(state, action.result.data)
-      with_included = api_reducers.load_included( removed, action.result.included )
+      removed =  remove_data(state, action.result.data)
+      with_included = load_included( removed, action.result.included )
       return with_included
     case API_UPDATE_ALL:
-      return api_reducers.update_all(state, action.model, action.condition, action.replacement)
+      return update_all(state, action.model, action.condition, action.replacement)
     case API_DELETE_ALL:
-      return api_reducers.delete_all(state, action.model, action.condition)
+      return delete_all(state, action.model, action.condition)
     default:
       return state
   }
