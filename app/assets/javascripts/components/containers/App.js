@@ -1,6 +1,6 @@
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import Api from '../components/Api';
+import Inbox from '../components/Inbox';
 import * as ApiActions from '../actions/api';
 
 function mapStateToProps(state) {
@@ -12,4 +12,4 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators(ApiActions, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Api);
+export default connect(mapStateToProps, mapDispatchToProps)(Inbox);
