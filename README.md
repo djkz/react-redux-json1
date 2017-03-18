@@ -1,29 +1,27 @@
-# react-rails redux sample
-this is a simple example application using  react-rails and redux
-* rails 5.0.0.1
-* redux 3.0.4
-* react-rails 1.10.0
-* react 15.4.1
+# react-redux-json1
+
+This is a sample app using json v1 and redux to normalize and complex data relationships so it can be used instead of graphQL and relay
+
+## API Reducer
+
+Takes data serialized by active-model-serializer and insert/replaces the data currently in the state.api for redux. Initial api structure initialized in the Root component and can be preloaded when the component is initialized.
+
+## Form Reducer
+
+Allows to use RESTful routes without adding extra code (currently only with create, new and show actions, but it should be easy to add edit, update and destroy using the appropriate api reducer actions.
+
+## App Structure
+
+Using above reducers you should be able to add any kind of structure on the backend side, without adding any complexity to the front end. I have used bare minimum when it comes to dependencies, but you should be able to easily add router and any other reducers to support your specific app.
 
 ## Installation
 
 ```
-git clone https://github.com/suzan2go/react-rails-redux-sample.git
+git clone https://github.com/djkz/react-redux-json1
 cd react-rails-redux-sample
 bundle install
 npm install
+rake db:migrate
 ```
 
-
-## Troubleshooting
-
-```
-Error while running /home/pavel/projects/react-rails-redux-sample/node_modules/.bin/browserifyinc -t babelify --list --cachefile=/home/pavel/projects/react-rails-redux-sample/tmp/cache/browserify-rails/browserifyinc-cache.json -o "/home/pavel/projects/react-rails-redux-sample/tmp/cache/browserify-rails/output20160329-23163-17hjpm7" -:
-
-/usr/bin/env: node No such file or directory
-
-(in /home/pavel/projects/react-rails-redux-sample/app/assets/javascripts/components.js)
-```
-
-You can find answer here: http://stackoverflow.com/questions/20886217/browserify-error-usr-bin-env-node-no-such-file-or-directory
-# react-redux-json1
+### original project is based on https://github.com/suzan2go/react-rails-redux-sample.git
