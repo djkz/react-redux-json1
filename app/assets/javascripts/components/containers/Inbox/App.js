@@ -1,7 +1,7 @@
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import InboxApp from '../components/InboxApp'
-import * as ApiActions from '../actions/api';
+import InboxApp from '../../components/Inbox/InboxApp'
+import * as ApiActions from '../../actions/api';
 
 function mapStateToProps(state) {
   return {
