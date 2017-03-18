@@ -1,6 +1,6 @@
 # react-redux-json1
 
-This is a sample app using json v1 and redux to normalize and complex data relationships so it can be used instead of graphQL and relay
+This is a sample app using json v1 and redux to normalize data relationships so it can be used instead of graphQL and relay
 
 ## API Reducer
 
