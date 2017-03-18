@@ -10,6 +10,14 @@ class InboxesController < ApplicationController
     render json: @inbox
   end
 
+  def show
+    @inbox = Inbox.includes(:messages).find params[:id]
+    sleep 0.5
+
+    # you can have your hierarchy be as complex as you need here, the api reducer will normalize it 
+    render json: @inbox, include: [:messages] 
+  end
+
   private
 
   def inbox_params

@@ -1,6 +1,5 @@
 export const NEW = 'NEW'
 export const EDIT = 'EDIT'
-export const CREATE = 'CREATE'
 export const DESTROY = 'DESTROY'
 export const UPDATE = 'UPDATE'
 export const UPDATE_MODEL = 'UPDATE_MODEL'
@@ -47,6 +46,18 @@ export function form_create(e, form, onSuccess = null){
         } else {
           alert(error);
         }
+      })
+  }
+}
+
+export function form_show( controller, id ){
+  return dispatch => {
+    $.get( controller + '/' + id ).
+      done((result) => {
+        dispatch( ApiAction.load( result ));
+      }).
+      fail((xhr, status, error) => {
+        alert(error);
       })
   }
 }

@@ -10,7 +10,7 @@ class NewInbox extends Component {
         Inbox Name
         <span className="error">{ form.errors.name && form.errors.name[0] }</span>
       </label>
-      <input type="text" value={form.model.name} onChange={(e) => update_model('name', e.target.value)} />
+      <input type="text" value={form.model.name} onChange={(e) => update_model('name', e.target.value)} autoFocus />
       <input type="submit" value="Create Inbox" />
       </form>
   }

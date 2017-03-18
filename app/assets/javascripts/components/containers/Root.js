@@ -9,7 +9,10 @@ const store = configureStore();
 
 export default class Root extends Component {
   componentWillMount() {
-    store.dispatch(initialize({ inboxes: this.props.inboxes}))
+    store.dispatch(initialize({
+      inboxes: this.props.inboxes,
+      messages: []
+    }))
   }
 
   render() {
