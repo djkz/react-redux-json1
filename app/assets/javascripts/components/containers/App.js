@@ -5,6 +5,7 @@ import * as ApiActions from '../actions/api';
 
 function mapStateToProps(state) {
   return {
+    inboxes: state.api.inboxes
   }
 }
 

@@ -1,24 +1,42 @@
 import React, { Component, PropTypes } from 'react';
 
 class InboxApp extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      selected: 0
+    };
+  }  
+
+  itemClassName(index){
+    let class_name = 'item'
+    if (index == this.state.selected) class_name += " selected"
+
+    return class_name
+  }
+
+  onSelectContacts(){
+    this.setState({ selected: 0 })
+  }
+
+  onSelectInbox(inbox, index){
+    this.setState({ selected: index })
+  }
+
   render() {
-    //const { increment, incrementIfOdd, incrementAsync, decrement, counter } = this.props;
+    const {inboxes} = this.props;
+
     return (
-      <p>
-			Inbox App
-      </p>
+      <div className="container">
+        <div className="sidebar">
+          <div onClick={(e) => this.onSelectContacts()} className={this.itemClassName(0)}>Contacts</div>
+          { inboxes.map( (inbox, index) => <div key={index} onClick={(e) => this.onSelectInbox(inbox, index + 1)} className={this.itemClassName(index + 1)}>{ inbox.name }</div> ) }
+        </div>
+        <div className="main">
+        </div>
+      </div>
     );
   }
 }
-
-/*
-Counter.propTypes = {
-  increment: PropTypes.func.isRequired,
-  incrementIfOdd: PropTypes.func.isRequired,
-  incrementAsync: PropTypes.func.isRequired,
-  decrement: PropTypes.func.isRequired,
-  counter: PropTypes.number.isRequired
-};
-*/
 
 export default InboxApp;

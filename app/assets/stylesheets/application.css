@@ -13,3 +13,14 @@
  *= require_tree .
  *= require_self
  */
+
+body {
+  font-family: helvetica, arial, serif;
+  font-size: 14px;
+}
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}

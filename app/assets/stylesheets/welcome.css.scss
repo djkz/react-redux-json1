@@ -1,3 +1,32 @@
 // Place all the styles related to the welcome controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.container {
+  display: flex;
+  min-height: 400px;
+  & .sidebar {
+    flex: 1;
+    border-right: 1px solid #EAEAEA;
+    background-color: #226688;
+    color: #f0f0f0;
+    & .item {
+      flex: 1;
+      width: 100%;
+      float: left;
+      padding: 10px 25px;
+      &:hover {
+        background-color: #115577;
+        color: #ffffff;
+      }
+    }
+    & .item.selected {
+      background-color: #105070;
+      color: #ffffff;
+    }
+
+  }
+  & .main {
+    flex: 4;
+  }
+}
