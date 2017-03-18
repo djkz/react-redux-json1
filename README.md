@@ -18,7 +18,7 @@ Using above reducers you should be able to add any kind of structure on the back
 
 ```
 git clone https://github.com/djkz/react-redux-json1
-cd react-rails-redux-sample
+cd react-redux-json1
 bundle install
 npm install
 rake db:migrate
