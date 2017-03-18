@@ -77,16 +77,12 @@ GEM
     connection_pool (2.2.1)
     daemons (1.2.4)
     diff-lcs (1.2.5)
-    em-websocket (0.5.1)
-      eventmachine (>= 0.12.9)
-      http_parser.rb (~> 0.6.0)
     erubis (2.7.0)
     eventmachine (1.0.9.1)
     execjs (2.7.0)
     ffi (1.9.14)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
-    http_parser.rb (0.6.0)
     i18n (0.7.0)
     jbuilder (2.6.1)
       activesupport (>= 3.0.0, < 5.1)
@@ -151,10 +147,6 @@ GEM
       execjs
       railties (>= 3.2)
       tilt
-    react-rails-hot-loader (0.7.0)
-      em-websocket
-      rails
-      react-rails
     rspec-core (3.5.4)
       rspec-support (~> 3.5.0)
     rspec-expectations (3.5.0)
@@ -230,7 +222,6 @@ DEPENDENCIES
   jquery-rails
   rails (= 5.0.0.1)
   react-rails
-  react-rails-hot-loader
   rspec-rails (~> 3.5)
   sass-rails
   sdoc (~> 0.4.0)

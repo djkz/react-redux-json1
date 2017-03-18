@@ -1,38 +1,46 @@
 import React, { Component, PropTypes } from 'react';
+import NewInbox from '../../containers/Inbox/New'
 
 class InboxApp extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selected: 0,
-      inbox: null
+      selected: 'contacts',
+      inbox_id: null
     };
   }  
 
-  itemClassName(index){
-    let class_name = 'item'
-    if (index == this.state.selected) class_name += " selected"
+  itemClassName(selected, id = null){
+    if (selected == this.state.selected && selected != "inbox" ) return "item selected"
+    if (selected == 'inbox' && id == this.state.inbox_id) return "item selected"
 
-    return class_name
+    return 'item'
   }
 
   onSelectContacts(){
-    this.setState({ selected: 0 })
+    this.setState({ selected: 'contacts' })
   }
 
-  onSelectInbox(inbox, index){
-    this.setState({ selected: index, inbox: inbox.id })
+  onSelectInbox(inbox){
+    this.setState({ selected: 'inbox', inbox_id: inbox.id })
+  }
+
+  onCreateInbox(result){
+    this.setState({ selected: 'inbox', inbox_id: result.data.id })
   }
 
   onNewInbox(){
-    this.setState({ selected: this.props.inboxes.length + 2 })
+    const {form_new} = this.props;
+    form_new( 'inboxes', 'inbox', { name: '' })
+
+    this.setState({ selected: 'new_inbox' })
   }
 
   renderSidebar(inboxes){
     return (
       <div className="sidebar">
-        <div onClick={(e) => this.onSelectContacts()} className={this.itemClassName(0)}>Contacts</div>
-        { inboxes.map( (inbox, index) => <div key={index} onClick={(e) => this.onSelectInbox(inbox, index + 1)} className={this.itemClassName(index + 1)}>{ inbox.name }</div> ) }
+        <div onClick={(e) => this.onSelectContacts()} className={this.itemClassName('contacts')}>Contacts</div>
+        { inboxes.map( (inbox, index) => <div key={index} onClick={(e) => this.onSelectInbox(inbox)} className={this.itemClassName('inbox', inbox.id)}>{ inbox.name }</div> ) }
         <div onClick={(e) => this.onNewInbox()} className={this.itemClassName(inboxes.length + 2)}>+ Add Inbox</div>
       </div>
     )
@@ -45,9 +53,9 @@ class InboxApp extends Component {
       <div className="container">
         { this.renderSidebar(inboxes) }
         <div className="main">
-          { this.state.selected == 0 && <span>Contacts</span> }
-          { this.state.selected > 0 && this.state.selected < inboxes.length + 2 && <span>Inbox {this.state.inbox}</span> }
-          { this.state.selected == inboxes.length + 2 && <span>New Inbox</span> }
+          { this.state.selected == 'contacts' && <span>Contacts</span> }
+          { this.state.selected == 'inbox' && <span>Inbox {this.state.inbox_id}</span> }
+          { this.state.selected == 'new_inbox' && <NewInbox onCreate={this.onCreateInbox.bind(this)} /> }
         </div>
       </div>
     );
